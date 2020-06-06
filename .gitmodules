@@ -1,0 +1,3 @@
+[submodule "gcloud-scripts/kubeip"]
+	path = gcloud-scripts/kubeip
+	url = https://github.com/doitintl/kubeip
