@@ -1,0 +1,32 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: simpleingressroute
+  namespace: ingress
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`shuuji3-gke.duckdns.org`) && PathPrefix(`/notls`)
+    kind: Rule
+    services:
+    - name: whoami
+      port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroutetls
+  namespace: ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`shuuji3-gke.duckdns.org`) && PathPrefix(`/tls`)
+    kind: Rule
+    services:
+    - name: whoami
+      port: 80
+  tls:
+    certResolver: myresolver

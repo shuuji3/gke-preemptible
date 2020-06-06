@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroutetls
+  namespace: ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`shuuji3-gke.duckdns.org`) && PathPrefix(`/nginx`)
+    kind: Rule
+    services:
+    - name: nginx
+      port: 80
+  tls:
+    certResolver: myresolver
