@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  acme.json: ""
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: traefik-letsencrypt
+  namespace: ingress
